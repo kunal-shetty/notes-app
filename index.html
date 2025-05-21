@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+  <title>Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="background-pattern"></div>
+  <div class="floating-shapes"></div>
+  
+  <div class="container">
+    <header class="app-header">
+      <div class="header-content">
+        <h1><span class="accent-text">Notes</span> App</h1>
+        <div class="header-actions">
+          <button id="new-note-btn" class="icon-btn mobile-only">
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="theme-toggle">
+            <button id="theme-btn" class="icon-btn">
+              <i class="fas fa-moon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <div class="note-input-container">
+      <div class="note-input glass-card">
+        <div class="input-header">
+          <h3>New Note</h3>
+          <button id="close-input" class="icon-btn small">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <input type="text" id="note-title" placeholder="Title" class="input-field" />
+        <textarea id="note-text" placeholder="Start writing something beautiful..." class="input-field"></textarea>
+        <div class="controls">
+          <div class="color-palette">
+            <div class="color-option" data-color="#ffd5cd" style="background-color: #ffd5cd;"></div>
+            <div class="color-option" data-color="#ffe8cd" style="background-color: #ffe8cd;"></div>
+            <div class="color-option" data-color="#fff4cd" style="background-color: #fff4cd;"></div>
+            <div class="color-option" data-color="#f1ffcd" style="background-color: #f1ffcd;"></div>
+            <div class="color-option" data-color="#cdffd5" style="background-color: #cdffd5;"></div>
+            <div class="color-option" data-color="#cdf9ff" style="background-color: #cdf9ff;"></div>
+            <div class="color-option" data-color="#cdd9ff" style="background-color: #cdd9ff;"></div>
+            <div class="color-option" data-color="#e8cdff" style="background-color: #e8cdff;"></div>
+          </div>
+          <button id="add-note" class="primary-btn">
+            <i class="fas fa-paper-plane"></i>
+            <span>Save Note</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <main class="notes-container">
+      <div class="notes" id="notes-container"></div>
+    </main>
+  </div>
+
+  <div class="modal" id="edit-modal">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h2>Edit Note</h2>
+        <button class="close-modal icon-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <input type="text" id="edit-title" class="input-field" />
+      <textarea id="edit-text" class="input-field"></textarea>
+      <div class="color-palette">
+        <div class="color-option" data-color="#ffd5cd" style="background-color: #ffd5cd;"></div>
+        <div class="color-option" data-color="#ffe8cd" style="background-color: #ffe8cd;"></div>
+        <div class="color-option" data-color="#fff4cd" style="background-color: #fff4cd;"></div>
+        <div class="color-option" data-color="#f1ffcd" style="background-color: #f1ffcd;"></div>
+        <div class="color-option" data-color="#cdffd5" style="background-color: #cdffd5;"></div>
+        <div class="color-option" data-color="#cdf9ff" style="background-color: #cdf9ff;"></div>
+        <div class="color-option" data-color="#cdd9ff" style="background-color: #cdd9ff;"></div>
+        <div class="color-option" data-color="#e8cdff" style="background-color: #e8cdff;"></div>
+      </div>
+      <div class="modal-actions">
+        <button id="save-edit" class="primary-btn">
+          <i class="fas fa-save"></i>
+          <span>Save Changes</span>
+        </button>
+        <button id="cancel-edit" class="secondary-btn">
+          <i class="fas fa-times"></i>
+          <span>Cancel</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav">
+    <button id="mobile-new-note" class="mobile-nav-btn active">
+      <i class="fas fa-plus"></i>
+      <span>New</span>
+    </button>
+    <button class="mobile-nav-btn">
+      <i class="fas fa-star"></i>
+      <span>Favorites</span>
+    </button>
+    <button class="mobile-nav-btn">
+      <i class="fas fa-cog"></i>
+      <span>Settings</span>
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
