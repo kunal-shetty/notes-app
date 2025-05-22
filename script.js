@@ -119,9 +119,8 @@ function deleteNote(index, event) {
     saveNotes();
     renderNotes();
     
-    // undo toast
-    showToast("Note deleted", () => {
-    });
+    // Simple confirmation toast without undo
+    showToast("Note deleted");
   }, 300);
 }
 
@@ -260,15 +259,11 @@ themeBtn.addEventListener("click", () => {
 function getTextColor(hex) {
   return '#000000';
 }
-
-// Show toast notification
-function showToast(message, action, actionHandler) {
+// Simplified showToast function without action button
+function showToast(message) {
   const toast = document.createElement("div");
   toast.className = "toast";
-  toast.innerHTML = `
-    <span>${message}</span>
-    ${action ? `<button onclick="event.stopPropagation(); ${actionHandler}()">${action}</button>` : ''}
-  `;
+  toast.innerHTML = `<span>${message}</span>`;
   document.body.appendChild(toast);
   
   setTimeout(() => {
