@@ -7,24 +7,23 @@ const closeInputBtn = document.getElementById("close-input");
 const themeBtn = document.getElementById("theme-btn");
 const noteInputContainer = document.querySelector(".note-input-container");
 
-// State
+// states
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 let currentEditIndex = null;
 let currentTheme = localStorage.getItem("theme") || "light";
 let selectedColor = "#ffd5cd";
 
-// Initialize
+// init
 document.documentElement.setAttribute("data-theme", currentTheme);
 themeBtn.innerHTML = currentTheme === "dark" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
 
-// Color Palette
+// Colors
 const colorOptions = document.querySelectorAll(".color-option");
 colorOptions.forEach(option => {
   option.addEventListener("click", () => {
-    // Remove selected class from all options
-    colorOptions.forEach(opt => opt.classList.remove("selected"));
     
-    // Add selected class to clicked option
+    colorOptions.forEach(opt => opt.classList.remove("selected"));
+
     option.classList.add("selected");
     selectedColor = option.dataset.color;
     
@@ -33,12 +32,12 @@ colorOptions.forEach(option => {
   });
 });
 
-// Set first color as default selected
+// first color as default selected
 if (colorOptions.length > 0) {
   colorOptions[0].classList.add("selected");
 }
 
-// Toggle Note Input (Mobile)
+// Toggle Note Input (for mobile)
 function toggleNoteInput(show) {
   if (show) {
     noteInputContainer.classList.add("visible");
@@ -52,7 +51,7 @@ newNoteBtn?.addEventListener("click", () => toggleNoteInput(true));
 mobileNewNoteBtn?.addEventListener("click", () => toggleNoteInput(true));
 closeInputBtn?.addEventListener("click", () => toggleNoteInput(false));
 
-// Save notes to localStorage
+// Save notes
 function saveNotes() {
   localStorage.setItem("notes", JSON.stringify(notes));
 }
@@ -93,7 +92,7 @@ function renderNotes() {
       </div>
     `;
     
-    // Add click effect
+    //  click effect
     noteEl.addEventListener("click", (e) => {
       if (!e.target.closest(".note-btn")) {
         noteEl.style.transform = "scale(0.98)";
@@ -120,14 +119,13 @@ function deleteNote(index, event) {
     saveNotes();
     renderNotes();
     
-    // Show undo toast
-    showToast("Note deleted", "undo", () => {
-      // Undo logic would go here
+    // undo toast
+    showToast("Note deleted", () => {
     });
   }, 300);
 }
 
-// Add new note
+// Add note
 addBtn.addEventListener("click", () => {
   const title = document.getElementById("note-title").value.trim();
   const text = document.getElementById("note-text").value.trim();
@@ -138,7 +136,7 @@ addBtn.addEventListener("click", () => {
     saveNotes();
     renderNotes();
     
-    // Reset form
+    // Reset 
     document.getElementById("note-title").value = "";
     document.getElementById("note-text").value = "";
     selectedColor = "#ffd5cd";
@@ -149,7 +147,7 @@ addBtn.addEventListener("click", () => {
     // Close input on mobile
     toggleNoteInput(false);
     
-    // Show success feedback
+    // Show success 
     addBtn.innerHTML = '<i class="fas fa-check"></i><span>Note Added</span>';
     setTimeout(() => {
       addBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span>Send Note</span>';
@@ -171,7 +169,7 @@ addBtn.addEventListener("click", () => {
   }
 });
 
-// Modal functionality
+// Modal 
 const modal = document.getElementById("edit-modal");
 const editTitle = document.getElementById("edit-title");
 const editText = document.getElementById("edit-text");
@@ -220,7 +218,7 @@ saveEditBtn.addEventListener("click", () => {
     renderNotes();
     closeEditModal();
     
-    // Show success feedback
+    // Show success 
     saveEditBtn.innerHTML = '<i class="fas fa-check"></i><span>Changes Saved</span>';
     setTimeout(() => {
       saveEditBtn.innerHTML = '<i class="fas fa-save"></i><span>Save Changes</span>';
@@ -260,17 +258,6 @@ themeBtn.addEventListener("click", () => {
 
 // Helper function to get appropriate text color based on background
 function getTextColor(hex) {
-  if (!/^#[0-9A-F]{6}$/i.test(hex)) return '#000000';
-  
-  // Convert hex to RGB
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  
-  // Calculate luminance
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  
-  // Return dark or light text based on luminance
   return '#000000';
 }
 
